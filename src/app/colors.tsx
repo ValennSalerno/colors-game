@@ -1,13 +1,13 @@
 "use client";
 
-import { Difficulty } from "@/app/pages/api/colors";
+import { Difficulty } from "@/pages/api/colors";
 import { useState } from "react";
 
 interface ColorsProps {
   readonly correctColor: string;
   readonly options: string[];
   readonly selectedDifficulty: string;
-}
+} //Declaracion de tipo de dato para TS
 
 export function Colors({
   correctColor,
@@ -22,10 +22,11 @@ export function Colors({
 
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, 1000); //setTimeout implementado para el uso de Toast en lugar de alert
     } else {
       alert("Incorrecto");
       setDisabledOptions((prev) => [...prev, option]);
+      //Agrego la opcion deshabilitada a un string[]
     }
   };
 
@@ -36,7 +37,7 @@ export function Colors({
       <div className="flex gap-5 my-5">
         {options.map((option) => (
           <div
-            key={option}
+            key={option} //Obligatorio ya que es un HTML component dentro de un map
             onClick={() => {
               if (!disabledOptions.includes(option)) {
                 handleOptionClick(option);
@@ -49,7 +50,7 @@ export function Colors({
                 ? "not-allowed"
                 : "pointer",
               opacity: disabledOptions.includes(option) ? 0.3 : 1,
-            }}
+            }} //cambiar a tailwind
           />
         ))}
       </div>
@@ -60,6 +61,7 @@ export function Colors({
           onChange={(e) => {
             const selectedDifficulty = e.target.value;
             window.location.search = `?difficulty=${selectedDifficulty}`;
+            //Attach para cambiar el URL al seleccionar dificultad diferente
           }}
           className="capitalize"
           defaultValue={selectedDifficulty}
