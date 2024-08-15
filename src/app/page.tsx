@@ -9,7 +9,7 @@ export default async function Home({
   searchParams: { difficulty?: string };
 }) {
   const difficulty = searchParams.difficulty || Difficulty.medium;
-  const data = await fetch(`/api/colors?difficulty=${difficulty}`, {
+  const data = await fetch(`${API_URL}/api/colors?difficulty=${difficulty}`, {
     cache: "no-cache",
   });
 
