@@ -16,12 +16,10 @@ export default function handler(
   res: NextApiResponse<ResponseData>
 ) {
   const difficulty = (req.query.difficulty as string) || Difficulty.medium;
-  //Aqui la dificultad proviene del cliente (page.tsx)
+
   const correctColor = generateRandomColor();
 
   const options = generateColorOptions(correctColor, difficulty);
-  //Devuelve el color correcto y
-  //devuelve array de colores incorrectos
 
   res.status(200).json({ correctColor: correctColor, options });
 } 
